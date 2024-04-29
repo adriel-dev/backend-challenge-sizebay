@@ -4,6 +4,7 @@ import backend.challenge.modules.task.repositories.ITaskRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.UUID;
 
 @Singleton
 public class DeleteTaskService implements IDeleteTaskService {
@@ -16,7 +17,7 @@ public class DeleteTaskService implements IDeleteTaskService {
 	}
 
 	@Override
-	public void execute(Long taskId) {
+	public void execute(UUID taskId) {
 		// TODO: Criar serviço responsável por deletar a tarefa
 	}
 
