@@ -5,7 +5,7 @@ import java.util.UUID;
 public class TaskNotFoundException extends RuntimeException {
 
     public TaskNotFoundException(UUID taskId){
-        super("Task with id {"+taskId+"} was not found!");
+        super("Task with id {"+taskId.toString()+"} was not found!");
     }
 
 }

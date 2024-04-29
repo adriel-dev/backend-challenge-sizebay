@@ -1,46 +1,59 @@
 package backend.challenge.modules.task.repositories;
 
 import backend.challenge.modules.task.dtos.TaskDTO;
+import backend.challenge.modules.task.enums.TaskStatus;
+import backend.challenge.modules.task.exception.TaskNotFoundException;
 import backend.challenge.modules.task.models.Task;
 
 import javax.inject.Singleton;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Singleton
 public class TaskRepository implements ITaskRepository {
 
-	@Override
-	public Task index(final Long taskId) {
-		// TODO: Criar método responsável por retornar tarefa por id
+	private final List<Task> inMemoryTaskDb = new ArrayList<>();
 
-		return null;
+	@Override
+	public Task index(final UUID taskId) {
+		for(Task task : inMemoryTaskDb) {
+			if(taskId.equals(task.getId())){
+				return task;
+			}
+		}
+		throw new TaskNotFoundException(taskId);
 	}
 
 	@Override
 	public List<Task> show() {
-		// TODO: Criar método responsável por retornar todas as tarefas
-
-		return null;
+		return this.inMemoryTaskDb;
 	}
 
 	@Override
 	public Task create(final TaskDTO taskDTO) {
-		// TODO: Criar método responsável por criar uma tarefa
-
-		return null;
+		var taskToCreate = new Task()
+				.setId(UUID.randomUUID())
+				.setTitle(taskDTO.getTitle())
+				.setDescription(taskDTO.getDescription())
+				.setStatus(TaskStatus.PROGRESS)
+				.setProgress(0)
+				.setCreatedAt(LocalDateTime.now());
+		inMemoryTaskDb.add(taskToCreate);
+		return taskToCreate;
 	}
 
 	@Override
 	public Task update(final Task task) {
-		// TODO: Criar método responsável por atualizar uma tarefa
-
-		return null;
+		var foundTask = index(task.getId());
+		foundTask.updateFrom(task);
+		return foundTask;
 	}
 
 	@Override
-	public void delete(final Long taskId) {
- 		// TODO: Criar método responsável por deletar tarefa por id
-
+	public void delete(final UUID taskId) {
+ 		var foundTask = index(taskId);
+		inMemoryTaskDb.remove(foundTask);
 	}
 
 }
