@@ -1,8 +1,9 @@
-package backend.challenge.modules.task.services;
+package backend.challenge.modules.task.services.impl;
 
 import backend.challenge.modules.task.dtos.TaskDTO;
 import backend.challenge.modules.task.models.Task;
 import backend.challenge.modules.task.repositories.ITaskRepository;
+import backend.challenge.modules.task.services.ICreateTaskService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -19,9 +20,7 @@ public class CreateTaskService implements ICreateTaskService {
 
 	@Override
 	public Task execute(TaskDTO taskDTO) {
-		// TODO: Criar serviço responsável por criar uma tarefa
-
-		return null;
+		return taskRepository.create(taskDTO);
 	}
 
 }

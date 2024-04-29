@@ -2,9 +2,9 @@ package backend.challenge.modules.task.services;
 
 import backend.challenge.modules.task.repositories.ITaskRepository;
 import backend.challenge.modules.task.repositories.TaskRepository;
+import backend.challenge.modules.task.services.impl.DeleteTaskService;
 import kikaha.core.test.KikahaRunner;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
