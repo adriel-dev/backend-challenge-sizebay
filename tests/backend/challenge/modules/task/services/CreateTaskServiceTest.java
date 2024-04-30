@@ -1,5 +1,6 @@
 package backend.challenge.modules.task.services;
 
+import backend.challenge.modules.task.converter.ITaskConverter;
 import backend.challenge.modules.task.repositories.ITaskRepository;
 import backend.challenge.modules.task.repositories.TaskRepository;
 import backend.challenge.modules.task.services.impl.CreateTaskService;
@@ -13,9 +14,15 @@ public class CreateTaskServiceTest {
 
 	private ICreateTaskService createTaskService;
 
+	private final ITaskConverter taskConverter;
+
+	public CreateTaskServiceTest(ITaskConverter taskConverter) {
+		this.taskConverter = taskConverter;
+	}
+
 	@Before
 	public void init() {
-		final ITaskRepository taskRepository = new TaskRepository();
+		final ITaskRepository taskRepository = new TaskRepository(taskConverter);
 
 		createTaskService = new CreateTaskService(taskRepository);
 	}

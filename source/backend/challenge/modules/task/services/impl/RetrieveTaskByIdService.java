@@ -4,6 +4,7 @@ import backend.challenge.modules.task.models.Task;
 import backend.challenge.modules.task.repositories.ITaskRepository;
 import backend.challenge.modules.task.services.IRetrieveTaskByIdService;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ public class RetrieveTaskByIdService implements IRetrieveTaskByIdService {
 
     private final ITaskRepository taskRepository;
 
+    @Inject
     public RetrieveTaskByIdService(ITaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }

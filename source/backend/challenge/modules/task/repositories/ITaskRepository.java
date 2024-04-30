@@ -11,7 +11,7 @@ public interface ITaskRepository {
 	Task index(UUID taskId);
 	List<Task> show();
 	Task create(TaskDTO taskDTO);
-	Task update(Task task);
+	Task update(UUID taskId, TaskDTO taskDto);
 	void delete(UUID taskId);
 
 }
